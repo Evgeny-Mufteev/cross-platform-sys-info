@@ -11,7 +11,7 @@ def get_system_info():
     memory = psutil.virtual_memory()
     system_info = {
         "Hostname": socket.gethostname(),
-        "IP Address": socket.gethostbyname(socket.gethostname()),
+        "IP Address (Internal)": socket.gethostbyname(socket.gethostname()),  # Внутренний IP
         "OS": platform.system(),
         "OS Version": platform.version(),
         "Architecture": platform.architecture()[0],
@@ -26,7 +26,7 @@ def get_system_info():
 def send_data_to_server(data):
     try:
         # Замените URL на адрес вашего сервера
-        server_url = "https://httpbin.org/post"
+        server_url = "http://195.80.51.63:3002/api/system_info"
         response = requests.post(server_url, json=data)
         if response.status_code == 200:
             print("Data sent successfully!")
